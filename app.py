@@ -2110,45 +2110,45 @@ with tab8:
 
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 
-    ###################################################################################
-	word = 'intitle:대동공업 | intitle:대동기어 | intitle:엠트론 | intitle:tym | intitle:현대건설기계 | intitle:클라크머터리얼 | intitle:우진산전 | intitle:타타대우상용차 |\
-            intitle:반도체수급 | intitle:호룡 | intitle:동서콘트롤 | intitle:현대상용차 | intitle:영안모자 | intitle:HSD엔진 | intitle:대동모빌리티'
-	url = 'https://www.google.com/search?q={}&newwindow=1&tbm=nws&ei=TUmuY5LlINeghwOfw7egDQ&start={}&sa=N&ved=2ahUKEwjSv42woqD8AhVX0GEKHZ_hDdQQ8tMDegQIBBAE&biw=763&bih=819&dpr=2.2'
+    # ###################################################################################
+	# word = 'intitle:대동공업 | intitle:대동기어 | intitle:엠트론 | intitle:tym | intitle:현대건설기계 | intitle:클라크머터리얼 | intitle:우진산전 | intitle:타타대우상용차 |\
+    #         intitle:반도체수급 | intitle:호룡 | intitle:동서콘트롤 | intitle:현대상용차 | intitle:영안모자 | intitle:HSD엔진 | intitle:대동모빌리티'
+	# url = 'https://www.google.com/search?q={}&newwindow=1&tbm=nws&ei=TUmuY5LlINeghwOfw7egDQ&start={}&sa=N&ved=2ahUKEwjSv42woqD8AhVX0GEKHZ_hDdQQ8tMDegQIBBAE&biw=763&bih=819&dpr=2.2'
 		
-	chrome_options = Options()
-	chrome_options.add_argument("--headless")
-	chrome_options.add_argument('--no-sandbox')
-	chrome_options.add_argument('--disable-gpu')
-	chrome_options.add_argument('--window-size=1920x1080')
-	chrome_options.add_argument("--start-maximized")
-	chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36")
-	chrome_options.add_argument("--log-level=3")
-	driver = webdriver.Chrome(options=chrome_options)
-	wait = WebDriverWait(driver, 20)
+	# chrome_options = Options()
+	# chrome_options.add_argument("--headless")
+	# chrome_options.add_argument('--no-sandbox')
+	# chrome_options.add_argument('--disable-gpu')
+	# chrome_options.add_argument('--window-size=1920x1080')
+	# chrome_options.add_argument("--start-maximized")
+	# chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36")
+	# chrome_options.add_argument("--log-level=3")
+	# driver = webdriver.Chrome(options=chrome_options)
+	# wait = WebDriverWait(driver, 20)
 	
-	page = 1
-	title_list = []
-	content_list = []
-	link_list = []
+	# page = 1
+	# title_list = []
+	# content_list = []
+	# link_list = []
 	
-	for i in range(0,50,10):
-		new_url = url.format(word, i)
-		driver.get(new_url)
-		# time.sleep(0.1)
-		page = page + 1
-		titles = driver.find_elements(By.CLASS_NAME, 'mCBkyc')
-		for title in titles:
-			title_list.append(title.text.replace(",", ""))
-		contents = driver.find_elements(By.CLASS_NAME, 'GI74Re')
-		for content in contents:
-			content_list.append(content.text.replace(",", ""))
-		links = driver.find_elements(By.CLASS_NAME, 'WlydOe')
-		for link in links:
-			link_list.append(link.get_attribute('href'))
-	driver.close()
+	# for i in range(0,50,10):
+	# 	new_url = url.format(word, i)
+	# 	driver.get(new_url)
+	# 	# time.sleep(0.1)
+	# 	page = page + 1
+	# 	titles = driver.find_elements(By.CLASS_NAME, 'mCBkyc')
+	# 	for title in titles:
+	# 		title_list.append(title.text.replace(",", ""))
+	# 	contents = driver.find_elements(By.CLASS_NAME, 'GI74Re')
+	# 	for content in contents:
+	# 		content_list.append(content.text.replace(",", ""))
+	# 	links = driver.find_elements(By.CLASS_NAME, 'WlydOe')
+	# 	for link in links:
+	# 		link_list.append(link.get_attribute('href'))
+	# driver.close()
 
-	news_df = pd.DataFrame({'제목':title_list,'내용':content_list})
-	st.dataframe(news_df,1500)
+	# news_df = pd.DataFrame({'제목':title_list,'내용':content_list})
+	# st.dataframe(news_df,1500)
 
 st.sidebar.text('********************************')
 ph = st.sidebar.empty()
