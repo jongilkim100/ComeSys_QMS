@@ -2131,7 +2131,7 @@ with tab8:
 	content_list = []
 	link_list = []
 	
-	for i in range(0,100,10):
+	for i in range(0,50,10):
 		new_url = url.format(word, i)
 		driver.get(new_url)
 		# time.sleep(0.1)
