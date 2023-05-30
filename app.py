@@ -664,7 +664,7 @@ st.sidebar.markdown('<h1><div style="text-align: center;">😃COMESYS QMS Web Ap
 st.sidebar.markdown('<h1><div style="text-align: center;">☀️2023년 품질 방침☀️</div></h1>', unsafe_allow_html=True)
 st.sidebar.markdown('<h2><div style="text-align: center;">🏳️‍🌈전사적인 품질 혁신을 통한 Zero Defect 달성</div></h2>', unsafe_allow_html=True)
 st.sidebar.image("./image/1.png", width=300)
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["💙🇰🇷한국본사", "💗🇨🇳중국곤산","📅일자별검색","📆기간별검색","🛰️고객사별검색","👆품목별검색","🌀클레임분석자료",'🌈INFORMATION'])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["💙🇰🇷한국본사", "💗🇨🇳중국곤산","📅일자별검색","📆기간별검색","🛰️고객사별검색","👆품목별검색","🌀클레임분석자료",'🌈INFORMATION','📋게시판'])
 
 with tab1:
 	col7, col8, col9 = st.columns(3)
@@ -2109,6 +2109,13 @@ with tab8:
 		st.metric(label="🚒TYM 주가", value=format(TYM[-1],','), delta=TYM_주식변동,delta_color="inverse")
 
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
+
+with tab9:
+	uploaded_file = st.file_uploader("Upload a PNG or JPG file")
+
+	if uploaded_file is not None:
+		image = Image.open(uploaded_file)
+		st.image(image, caption='게시판', width=1000)
 
     # ###################################################################################
 	# word = 'intitle:대동공업 | intitle:대동기어 | intitle:엠트론 | intitle:tym | intitle:현대건설기계 | intitle:클라크머터리얼 | intitle:우진산전 | intitle:타타대우상용차 |\
