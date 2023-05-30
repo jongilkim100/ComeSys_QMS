@@ -2171,5 +2171,5 @@ ph = st.sidebar.empty()
 st.sidebar.text('********************************')
 while True:
 	ph1.subheader(datetime.now(gettz('Asia/Seoul')).strftime('%Y년%m월%d일 %H:%M:%S'))
-	# ph.subheader("⏲️"+datetime.now(gettz('Asia/Seoul')).strftime('%Y년%m월%d일 %H:%M:%S'))
+	ph.subheader("⏲️"+datetime.now(gettz('Asia/Seoul')).strftime('%Y년%m월%d일 %H:%M:%S'))
 	time.sleep(1)
