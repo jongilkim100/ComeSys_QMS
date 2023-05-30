@@ -2119,7 +2119,7 @@ with tab9:
 	image_files = os.listdir(image_folder)
 
 	# Create a selectbox to choose the image
-	selected_image = st.selectbox("게시할 이미지 선택", image_files)
+	selected_image = st.selectbox("게시할 이미지 선택", ['']+image_files)
 
 	# Display the selected image
 	if selected_image:
