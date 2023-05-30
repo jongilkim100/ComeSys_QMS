@@ -16,6 +16,7 @@ from urllib import request
 from PIL import Image
 from io import BytesIO
 import FinanceDataReader as fdr
+import os
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -2111,11 +2112,19 @@ with tab8:
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 
 with tab9:
-	uploaded_file = st.file_uploader("Upload a PNG or JPG file")
+	# Path to the image folder
+	image_folder = "./db/image/"
 
-	if uploaded_file is not None:
-		image = Image.open(uploaded_file)
-		st.image(image, caption='게시판', width=1000)
+	# Get the list of image files in the folder
+	image_files = os.listdir(image_folder)
+
+	# Create a selectbox to choose the image
+	selected_image = st.selectbox("게시할 이미지 선택", image_files)
+
+	# Display the selected image
+	if selected_image:
+		image_path = os.path.join(image_folder, selected_image)
+		st.image(image_path, caption=selected_image, width=1000)
 
     # ###################################################################################
 	# word = 'intitle:대동공업 | intitle:대동기어 | intitle:엠트론 | intitle:tym | intitle:현대건설기계 | intitle:클라크머터리얼 | intitle:우진산전 | intitle:타타대우상용차 |\
