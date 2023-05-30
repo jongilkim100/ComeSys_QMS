@@ -2113,7 +2113,7 @@ with tab8:
 
 with tab9:
 	# Path to the image folder
-	image_folder = "./db/image/"
+	image_folder = "./image/"
 
 	# Get the list of image files in the folder
 	image_files = os.listdir(image_folder)
