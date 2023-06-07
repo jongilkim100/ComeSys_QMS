@@ -1629,11 +1629,12 @@ with tab5:
 	출하검사_기간별현황_검사수량 = format(int(출하검사_기간별현황['검사수량'].astype(float, errors = 'raise').sum()),',')
 	출하검사_기간별현황_부적합수량 = format(int(출하검사_기간별현황['부적합수량'].sum()),',')
 
-	with st.form("정리내용1"):
-		st.markdown('🎆총 공정검사 수량 : ' +str(공정검사_기간별현황_검사수량)+'EA')
-		st.markdown('🎇총 공정검사 부적합 수량 : ' +str(공정검사_기간별현황_부적합수량)+'EA')
-		st.markdown('🎈총 출하검사 수량 : ' +str(출하검사_기간별현황_검사수량)+'EA')
-		st.markdown('🎉총 출하검사 부적합 수량 : ' +str(출하검사_기간별현황_부적합수량)+'EA')
+	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
+	st.markdown('🎆총 공정검사 수량 : ' +str(공정검사_기간별현황_검사수량)+'EA')
+	st.markdown('🎇총 공정검사 부적합 수량 : ' +str(공정검사_기간별현황_부적합수량)+'EA')
+	st.markdown('🎈총 출하검사 수량 : ' +str(출하검사_기간별현황_검사수량)+'EA')
+	st.markdown('🎉총 출하검사 부적합 수량 : ' +str(출하검사_기간별현황_부적합수량)+'EA')
+	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 
 	st.markdown('🎲공정검사_세부내용')
 	st.dataframe(공정검사_기간별현황, 1800)
@@ -1677,16 +1678,16 @@ with tab6:
 	출하검사_품번현황_부적합수량 = format(int(출하검사_품번현황['부적합수량'].sum()),',')
 	출하검사_품번현황_부적합내용 = 출하검사_품번현황['부적합내용'].dropna().drop_duplicates().to_list()
 
-	with st.form("정리내용2"):
-		st.markdown('🎆총 공정검사 수량 : ' +str(공정검사_품번현황_검사수량)+'EA')
-		st.markdown('🎇총 공정검사 부적합 수량 : ' +str(공정검사_품번현황_부적합수량)+'EA')
-		original_title1 = '<p style="font-family:Courier; color:red; font-size: 15px;">🛍️공정검사 부적합 내용 : ' + str(공정검사_품번현황_부적합내용)[1:-1]+'</p>'
-		st.markdown(original_title1,unsafe_allow_html=True)
-	with st.form("정리내용3"):
-		st.markdown('🎈총 출하검사 수량 : ' +str(출하검사_품번현황_검사수량)+'EA')
-		st.markdown('🎉총 출하검사 부적합 수량 : ' +str(출하검사_품번현황_부적합수량)+'EA')
-		original_title2 = '<p style="font-family:Courier; color:red; font-size: 15px;">🎯출하검사 부적합 내용 : ' + str(출하검사_품번현황_부적합내용)[1:-1]+'</p>'
-		st.markdown(original_title2,unsafe_allow_html=True)
+	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
+	st.markdown('🎆총 공정검사 수량 : ' +str(공정검사_품번현황_검사수량)+'EA')
+	st.markdown('🎇총 공정검사 부적합 수량 : ' +str(공정검사_품번현황_부적합수량)+'EA')
+	original_title1 = '<p style="font-family:Courier; color:red; font-size: 15px;">🛍️공정검사 부적합 내용 : ' + str(공정검사_품번현황_부적합내용)[1:-1]+'</p>'
+	st.markdown(original_title1,unsafe_allow_html=True)
+	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
+	st.markdown('🎈총 출하검사 수량 : ' +str(출하검사_품번현황_검사수량)+'EA')
+	st.markdown('🎉총 출하검사 부적합 수량 : ' +str(출하검사_품번현황_부적합수량)+'EA')
+	original_title2 = '<p style="font-family:Courier; color:red; font-size: 15px;">🎯출하검사 부적합 내용 : ' + str(출하검사_품번현황_부적합내용)[1:-1]+'</p>'
+	st.markdown(original_title2,unsafe_allow_html=True)
 
 	st.markdown('🎲공정검사_세부내용')
 	st.dataframe(공정검사_품번현황, 1800)
