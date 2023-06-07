@@ -1490,8 +1490,10 @@ with tab3:
 		margin_b=10,
 		margin_t=10,
 	)
-	with st.form("그래프1"):
-		st.plotly_chart(fig13, use_container_width=True)
+
+	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)	
+	st.plotly_chart(fig13, use_container_width=True)
+	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 
 	st.markdown('<h4><div style="text-align: left;">📋일일현황정리(부적합 발생분)</div></h4>', unsafe_allow_html=True)
 	st.dataframe(일일현황_데이터프레임, 1800,140)
@@ -1580,8 +1582,10 @@ with tab4:
 		margin_b=10,
 		margin_t=10,
 	)
-	with st.form("그래프2"):
-		st.plotly_chart(fig14, use_container_width=True)
+
+	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
+	st.plotly_chart(fig14, use_container_width=True)
+	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 
 	st.markdown('<h4><div style="text-align: left;">📋기간별현황정리(부적합 발생분)</div></h4>', unsafe_allow_html=True)
 	st.dataframe(기간별현황_데이터프레임, 1800,500)
