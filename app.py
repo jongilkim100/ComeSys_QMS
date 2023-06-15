@@ -2171,10 +2171,10 @@ with tab9:
 	# news_df = pd.DataFrame({'제목':title_list,'내용':content_list})
 	# st.dataframe(news_df,1500)
 
-st.sidebar.text('********************************')
-ph = st.sidebar.empty()
-st.sidebar.text('********************************')
-while True:
-	ph1.subheader(datetime.now(gettz('Asia/Seoul')).strftime('%Y년%m월%d일 %H:%M:%S'))
-	ph.subheader("⏲️"+datetime.now(gettz('Asia/Seoul')).strftime('%Y년%m월%d일 %H:%M:%S'))
-	time.sleep(1)
+# st.sidebar.text('********************************')
+# ph = st.sidebar.empty()
+# st.sidebar.text('********************************')
+# while True:
+# 	ph1.subheader(datetime.now(gettz('Asia/Seoul')).strftime('%Y년%m월%d일 %H:%M:%S'))
+# 	ph.subheader("⏲️"+datetime.now(gettz('Asia/Seoul')).strftime('%Y년%m월%d일 %H:%M:%S'))
+# 	time.sleep(1)
