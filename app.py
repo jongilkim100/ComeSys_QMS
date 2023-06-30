@@ -2129,7 +2129,7 @@ with tab9:
 	# Display the selected image
 	if selected_image:
 		image_path = os.path.join(image_folder, selected_image)
-		st.image(image_path, caption=selected_image, width=1620)
+		st.image(image_path, caption=selected_image, width=1550)
 
     # ###################################################################################
 	# word = 'intitle:대동공업 | intitle:대동기어 | intitle:엠트론 | intitle:tym | intitle:현대건설기계 | intitle:클라크머터리얼 | intitle:우진산전 | intitle:타타대우상용차 |\
