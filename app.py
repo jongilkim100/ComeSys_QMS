@@ -2155,9 +2155,6 @@ with tab8:
 
 		# df4_yesterday = fdr.DataReader('EUR/USD',''+yesterday+'')
 		# eur_data_yesterday = [x*y for x,y in zip(df1_yesterday['Open'],df4_yesterday['Open'])]
-
-
-
 		if fdr.DataReader('000490',''+today+'').empty == True:
 			대동공업 = fdr.DataReader('000490',''+yesterday+'')
 			대동공업 = [대동공업['Close'][i] for i in range(len(대동공업['Close']))]
