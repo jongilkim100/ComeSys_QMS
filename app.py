@@ -2037,9 +2037,9 @@ with tab8:
 			df4 = fdr.DataReader('EUR/USD',''+today+'')
 			eur_data = [x*y for x,y in zip(df1['Adj Close'],df4['Adj Close'])]
 		try:
-		if some_condition:
 		df1_yesterday = fdr.DataReader('USD/KRW', ''+yesterday+'')
 		dollar_data_yesterday = [df1_yesterday['Open'][i] for i in range(len(df1_yesterday['Open']))]
+		
 		except:
 			df1_yesterday=0
 			dollar_data_yesterday=0
