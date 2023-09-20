@@ -2053,7 +2053,7 @@ with tab8:
 			if yf.Ticker('KRW=X').history(period='1d').empty:
 			    df1 = yf.Ticker('KRW=X').history(period='1d', start=yesterday, end=yesterday)
 			    dollar_data = df1['Open'].tolist()
-	    		else:
+			else:
 				df1 = yf.Ticker('KRW=X').history(period='1d', start=today, end=today)
 				dollar_data = df1['Open'].tolist()
 		except Exception as e:
