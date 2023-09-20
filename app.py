@@ -2036,10 +2036,12 @@ with tab8:
 		else:
 			df4 = fdr.DataReader('EUR/USD',''+today+'')
 			eur_data = [x*y for x,y in zip(df1['Adj Close'],df4['Adj Close'])]
-
+		try:
 		df1_yesterday = fdr.DataReader('USD/KRW', ''+yesterday+'')
 		dollar_data_yesterday = [df1_yesterday['Open'][i] for i in range(len(df1_yesterday['Open']))]
-
+		except:
+			df1_yesterday=0
+			dollar_data_yesterday=0
 		df2_yesterday = fdr.DataReader('KRW/CNY',''+yesterday+'')
 		cny_data_yesterday = [1/df2_yesterday['Open'][i] for i in range(len(df2_yesterday['Open']))]
 
