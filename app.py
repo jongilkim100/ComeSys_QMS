@@ -2038,16 +2038,16 @@ with tab8:
 			eur_data = [x*y for x,y in zip(df1['Adj Close'],df4['Adj Close'])]
 
 		df1_yesterday = fdr.DataReader('USD/KRW', ''+yesterday+'')
-dollar_data_yesterday = [df1_yesterday['Open'][i] for i in range(len(df1_yesterday['Open']))]
+		dollar_data_yesterday = [df1_yesterday['Open'][i] for i in range(len(df1_yesterday['Open']))]
 
-df2_yesterday = fdr.DataReader('KRW/CNY',''+yesterday+'')
-cny_data_yesterday = [1/df2_yesterday['Open'][i] for i in range(len(df2_yesterday['Open']))]
+		df2_yesterday = fdr.DataReader('KRW/CNY',''+yesterday+'')
+		cny_data_yesterday = [1/df2_yesterday['Open'][i] for i in range(len(df2_yesterday['Open']))]
 
-df3_yesterday = fdr.DataReader('JPY/KRW',''+yesterday+'')
-jpn_data_yesterday = [100*df3_yesterday['Open'][i] for i in range(len(df3_yesterday['Open']))]
+		df3_yesterday = fdr.DataReader('JPY/KRW',''+yesterday+'')
+		jpn_data_yesterday = [100*df3_yesterday['Open'][i] for i in range(len(df3_yesterday['Open']))]
 
-df4_yesterday = fdr.DataReader('EUR/USD',''+yesterday+'')
-eur_data_yesterday = [x*y for x,y in zip(df1_yesterday['Open'],df4_yesterday['Open'])]
+		df4_yesterday = fdr.DataReader('EUR/USD',''+yesterday+'')
+		eur_data_yesterday = [x*y for x,y in zip(df1_yesterday['Open'],df4_yesterday['Open'])]
 
 		
                 # df1_yesterday = fdr.DataReader('USD/KRW', ''+yesterday+'')
