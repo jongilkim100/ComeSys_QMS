@@ -2051,8 +2051,8 @@ with tab8:
 # USD/KRW 환율 데이터 가져오기 (예외 처리 포함)
 		try:
    		 if yf.Ticker('KRW=X').history(period='1d').empty:
-			df1 = yf.Ticker('KRW=X').history(period='1d', start=yesterday, end=yesterday)
-			dollar_data = df1['Open'].tolist()
+		df1 = yf.Ticker('KRW=X').history(period='1d', start=yesterday, end=yesterday)
+		dollar_data = df1['Open'].tolist()
     		else:
 			df1 = yf.Ticker('KRW=X').history(period='1d', start=today, end=today)
 			dollar_data = df1['Open'].tolist()
