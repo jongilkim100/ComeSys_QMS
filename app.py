@@ -2070,7 +2070,7 @@ with tab8:
 		        df2 = yf.Ticker('CNYKRW=X').history(period='1d', start=today, end=today)
 		        cny_data = (1 / df2['Open']).tolist()
 		except Exception as e:
-		    print("An exception occurred while fetching KRW/CNY data:", str(e))
+			print("An exception occurred while fetching KRW/CNY data:", str(e))
 			df2 = pd.DataFrame()
 			cny_data = []
 		
