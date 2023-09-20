@@ -2037,17 +2037,124 @@ with tab8:
 			df4 = fdr.DataReader('EUR/USD',''+today+'')
 			eur_data = [x*y for x,y in zip(df1['Adj Close'],df4['Adj Close'])]
 		
-		df1_yesterday = fdr.DataReader('USD/KRW', ''+yesterday+'')
-		dollar_data_yesterday = [df1_yesterday['Open'][i] for i in range(len(df1_yesterday['Open']))]
 		
-		df2_yesterday = fdr.DataReader('KRW/CNY',''+yesterday+'')
-		cny_data_yesterday = [1/df2_yesterday['Open'][i] for i in range(len(df2_yesterday['Open']))]
+		
+		
+		
 
-		df3_yesterday = fdr.DataReader('JPY/KRW',''+yesterday+'')
-		jpn_data_yesterday = [100*df3_yesterday['Open'][i] for i in range(len(df3_yesterday['Open']))]
+# 현재 시간과 어제 시간 계산
+		current_time = datetime.now()
+		yesterday_time = current_time - timedelta(1)
+		today = str(current_time.year) + '.' + str(current_time.month) + '.' + str(current_time.day)
+		yesterday = str(yesterday_time.year) + '.' + str(yesterday_time.month) + '.' + str(yesterday_time.day)
 
-		df4_yesterday = fdr.DataReader('EUR/USD',''+yesterday+'')
-		eur_data_yesterday = [x*y for x,y in zip(df1_yesterday['Open'],df4_yesterday['Open'])]
+# USD/KRW 환율 데이터 가져오기 (예외 처리 포함)
+		try:
+   		 if yf.Ticker('KRW=X').history(period='1d').empty:
+       		 df1 = yf.Ticker('KRW=X').history(period='1d', start=yesterday, end=yesterday)
+     		   dollar_data = df1['Open'].tolist()
+    		else:
+     		   df1 = yf.Ticker('KRW=X').history(period='1d', start=today, end=today)
+		        dollar_data = df1['Open'].tolist()
+		except Exception as e:
+  		  print("An exception occurred while fetching USD/KRW data:", str(e))
+		    df1 = pd.DataFrame()
+		    dollar_data = []
+
+		# KRW/CNY 환율 데이터 가져오기 (예외 처리 포함)
+		try:
+		    if yf.Ticker('CNYKRW=X').history(period='1d').empty:
+		        df2 = yf.Ticker('CNYKRW=X').history(period='1d', start=yesterday, end=yesterday)
+		        cny_data = (1 / df2['Open']).tolist()
+		    else:
+		        df2 = yf.Ticker('CNYKRW=X').history(period='1d', start=today, end=today)
+		        cny_data = (1 / df2['Open']).tolist()
+		except Exception as e:
+		    print("An exception occurred while fetching KRW/CNY data:", str(e))
+		    df2 = pd.DataFrame()
+		    cny_data = []
+		
+		# JPY/KRW 환율 데이터 가져오기 (예외 처리 포함)
+		try:
+		    if yf.Ticker('JPYKRW=X').history(period='1d').empty:
+		        df3 = yf.Ticker('JPYKRW=X').history(period='1d', start=yesterday, end=yesterday)
+		        jpn_data = (100 * df3['Open']).tolist()
+		    else:
+		        df3 = yf.Ticker('JPYKRW=X').history(period='1d', start=today, end=today)
+		        jpn_data = (100 * df3['Open']).tolist()
+		except Exception as e:
+		    print("An exception occurred while fetching JPY/KRW data:", str(e))
+		    df3 = pd.DataFrame()
+		    jpn_data = []
+		
+		# EUR/USD 환율 데이터 가져오기 (예외 처리 포함)
+		try:
+		    if yf.Ticker('EURUSD=X').history(period='1d').empty:
+		        df4 = yf.Ticker('EURUSD=X').history(period='1d', start=yesterday, end=yesterday)
+		        eur_data = (df1['Open'] * df4['Open']).tolist()
+		    else:
+		        df4 = yf.Ticker('EURUSD=X').history(period='1d', start=today, end=today)
+		        eur_data = (df1['Open'] * df4['Open']).tolist()
+		except Exception as e:
+		    print("An exception occurred while fetching EUR/USD data:", str(e))
+		    df4 = pd.DataFrame()
+		    eur_data = []
+		
+		# 다른 환율에 대한 어제의 데이터 가져오기 (예외 처리 포함)
+		try:
+		    if yf.Ticker('KRW=X').history(period='1d', start=yesterday, end=yesterday).empty:
+		        df1_yesterday = pd.DataFrame()
+		        dollar_data_yesterday = []
+		    else:
+		        df1_yesterday = yf.Ticker('KRW=X').history(period='1d', start=yesterday, end=yesterday)
+		        dollar_data_yesterday = df1_yesterday['Open'].tolist()
+		except Exception as e:
+		    print("An exception occurred while fetching yesterday's USD/KRW data:", str(e))
+		    df1_yesterday = pd.DataFrame()
+		    dollar_data_yesterday = []
+		
+		try:
+		    if yf.Ticker('CNYKRW=X').history(period='1d', start=yesterday, end=yesterday).empty:
+		        df2_yesterday = pd.DataFrame()
+		        cny_data_yesterday = []
+		    else:
+		        df2_yesterday = yf.Ticker('CNYKRW=X').history(period='1d', start=yesterday, end=yesterday)
+		        cny_data_yesterday = (1 / df2_yesterday['Open']).tolist()
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		# df1_yesterday = fdr.DataReader('USD/KRW', ''+yesterday+'')
+		# dollar_data_yesterday = [df1_yesterday['Open'][i] for i in range(len(df1_yesterday['Open']))]
+		
+		# df2_yesterday = fdr.DataReader('KRW/CNY',''+yesterday+'')
+		# cny_data_yesterday = [1/df2_yesterday['Open'][i] for i in range(len(df2_yesterday['Open']))]
+
+		# df3_yesterday = fdr.DataReader('JPY/KRW',''+yesterday+'')
+		# jpn_data_yesterday = [100*df3_yesterday['Open'][i] for i in range(len(df3_yesterday['Open']))]
+
+		# df4_yesterday = fdr.DataReader('EUR/USD',''+yesterday+'')
+		# eur_data_yesterday = [x*y for x,y in zip(df1_yesterday['Open'],df4_yesterday['Open'])]
 
 
 
