@@ -2051,28 +2051,28 @@ with tab8:
 # USD/KRW 환율 데이터 가져오기 (예외 처리 포함)
 		try:
    		 if yf.Ticker('KRW=X').history(period='1d').empty:
-       		   df1 = yf.Ticker('KRW=X').history(period='1d', start=yesterday, end=yesterday)
-     		   dollar_data = df1['Open'].tolist()
+			df1 = yf.Ticker('KRW=X').history(period='1d', start=yesterday, end=yesterday)
+			dollar_data = df1['Open'].tolist()
     		else:
-     		   df1 = yf.Ticker('KRW=X').history(period='1d', start=today, end=today)
-		        dollar_data = df1['Open'].tolist()
+			df1 = yf.Ticker('KRW=X').history(period='1d', start=today, end=today)
+			dollar_data = df1['Open'].tolist()
 		except Exception as e:
   		  print("An exception occurred while fetching USD/KRW data:", str(e))
-		    df1 = pd.DataFrame()
-		    dollar_data = []
+			df1 = pd.DataFrame()
+			dollar_data = []
 
 		# KRW/CNY 환율 데이터 가져오기 (예외 처리 포함)
 		try:
 		    if yf.Ticker('CNYKRW=X').history(period='1d').empty:
-		        df2 = yf.Ticker('CNYKRW=X').history(period='1d', start=yesterday, end=yesterday)
+			df2 = yf.Ticker('CNYKRW=X').history(period='1d', start=yesterday, end=yesterday)
 		        cny_data = (1 / df2['Open']).tolist()
 		    else:
 		        df2 = yf.Ticker('CNYKRW=X').history(period='1d', start=today, end=today)
 		        cny_data = (1 / df2['Open']).tolist()
 		except Exception as e:
 		    print("An exception occurred while fetching KRW/CNY data:", str(e))
-		    df2 = pd.DataFrame()
-		    cny_data = []
+			df2 = pd.DataFrame()
+			cny_data = []
 		
 		# JPY/KRW 환율 데이터 가져오기 (예외 처리 포함)
 		try:
