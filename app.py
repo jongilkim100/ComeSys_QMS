@@ -665,7 +665,7 @@ st.sidebar.markdown('<h1><div style="text-align: center;">😃COMESYS QMS Web Ap
 st.sidebar.markdown('<h1><div style="text-align: center;">☀️2023년 품질 방침☀️</div></h1>', unsafe_allow_html=True)
 st.sidebar.markdown('<h2><div style="text-align: center;">🏳️‍🌈전사적인 품질 혁신을 통한 Zero Defect 달성</div></h2>', unsafe_allow_html=True)
 st.sidebar.image("./image/1.png", width=300)
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["💙🇰🇷한국본사", "💗🇨🇳중국곤산","📅일자별검색","📆기간별검색","🛰️고객사별검색","👆품목별검색","🌀클레임분석자료",'🌈INFORMATION','📋게시판'])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["💙🇰🇷한국본사", "💗🇨🇳중국곤산","📅일자별검색","📆기간별검색","🛰️고객사별검색","👆품목별검색","🌀클레임분석자료",'🌈INFORMATION','📋게시판','🎥동영상'])
 
 with tab1:
 	col7, col8, col9 = st.columns(3)
@@ -2061,7 +2061,10 @@ with tab8:
 
 		대동공업_yesterday = fdr.DataReader('000490',''+yesterday+'')
 		대동공업_yesterday = [대동공업_yesterday['Close'][i] for i in range(len(대동공업_yesterday['Close']))]
-		대동공업_주식변동 = int(대동공업[-1]-대동공업_yesterday[0])
+		try:
+			대동공업_주식변동 = int(대동공업[-1]-대동공업_yesterday[0])
+		except:
+			대동공업_주식변동 = 0
 
 		if fdr.DataReader('008830',''+today+'').empty == True:
 			대동기어 = fdr.DataReader('008830',''+yesterday+'')
@@ -2072,7 +2075,10 @@ with tab8:
 
 		대동기어_yesterday = fdr.DataReader('008830',''+yesterday+'')
 		대동기어_yesterday = [대동기어_yesterday['Close'][i] for i in range(len(대동기어_yesterday['Close']))]
-		대동기어_주식변동 = int(대동기어[-1]-대동기어_yesterday[0])
+		try:
+			대동기어_주식변동 = int(대동기어[-1]-대동기어_yesterday[0])
+		except:
+			대동기어_주식변동 = 0
 
 		if fdr.DataReader('267270',''+today+'').empty == True:
 			현대건설기계 = fdr.DataReader('267270',''+yesterday+'')
@@ -2083,7 +2089,10 @@ with tab8:
 
 		현대건설기계_yesterday = fdr.DataReader('267270',''+yesterday+'')
 		현대건설기계_yesterday = [현대건설기계_yesterday['Close'][i] for i in range(len(현대건설기계_yesterday['Close']))]
-		현대건설기계_주식변동 = int(현대건설기계[-1]-현대건설기계_yesterday[0])
+		try:
+			현대건설기계_주식변동 = int(현대건설기계[-1]-현대건설기계_yesterday[0])
+		except:
+			현대건설기계_주식변동 = 0
 
 		if fdr.DataReader('002900',''+today+'').empty == True:
 			TYM = fdr.DataReader('002900',''+yesterday+'')
@@ -2094,7 +2103,10 @@ with tab8:
 
 		TYM_yesterday = fdr.DataReader('002900',''+yesterday+'')
 		TYM_yesterday = [TYM_yesterday['Close'][i] for i in range(len(TYM_yesterday['Close']))]
-		TYM_주식변동 = int(TYM[-1]-TYM_yesterday[0])
+		try:
+			TYM_주식변동 = int(TYM[-1]-TYM_yesterday[0])
+		except:
+			TYM_주식변동 = 0
 
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 	col27, col28, col29, col30, col31, col32, col33, col34, col35 = st.columns([0.15,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5])
@@ -2108,14 +2120,26 @@ with tab8:
 		st.metric(label="💴JPN", value=round(jpn_data[-1],2), delta=round(jpn_data[-1] - jpn_data_yesterday[-1],2),delta_color="inverse")
 	with col31:	
 		st.metric(label="💶EUR", value=round(eur_data[-1],2), delta=round(eur_data[-1] - eur_data_yesterday[-1],2),delta_color="inverse")
-	with col32:	
-		st.metric(label="🚜대동공업 주가", value=format(대동공업[-1],','), delta=대동공업_주식변동,delta_color="inverse")
-	with col33:	
-		st.metric(label="🚛대동기어 주가", value=format(대동기어[-1],','), delta=대동기어_주식변동,delta_color="inverse")
-	with col34:	
-		st.metric(label="🚋현대건설기계 주가", value=format(현대건설기계[-1],','), delta=현대건설기계_주식변동,delta_color="inverse")
-	with col35:	
-		st.metric(label="🚒TYM 주가", value=format(TYM[-1],','), delta=TYM_주식변동,delta_color="inverse")
+	with col32:
+		try:
+			st.metric(label="🚜대동공업 주가", value=format(대동공업[-1],','), delta=대동공업_주식변동,delta_color="inverse")
+		except:
+			st.metric(label="🚜대동공업 주가", value=format(0,','),delta=대동공업_주식변동,delta_color="inverse")
+	with col33:
+		try:
+			st.metric(label="🚛대동기어 주가", value=format(대동기어[-1],','), delta=대동기어_주식변동,delta_color="inverse")
+		except:
+			st.metric(label="🚛대동기어 주가", value=format(0,','), delta=대동기어_주식변동,delta_color="inverse")
+	with col34:
+		try:
+			st.metric(label="🚋현대건설기계 주가", value=format(현대건설기계[-1],','), delta=현대건설기계_주식변동,delta_color="inverse")
+		except:
+			st.metric(label="🚋현대건설기계 주가", value=format(0,','), delta=현대건설기계_주식변동,delta_color="inverse")
+	with col35:
+		try:
+			st.metric(label="🚒TYM 주가", value=format(TYM[-1],','), delta=TYM_주식변동,delta_color="inverse")
+		except:
+			st.metric(label="🚒TYM 주가", value=format(0,','), delta=TYM_주식변동,delta_color="inverse")
 
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 
@@ -2134,6 +2158,14 @@ with tab9:
 		image_path = os.path.join(image_folder, selected_image)
 		st.image(image_path, caption=selected_image, width=1550)
 
+with tab10:
+    st.write("ComeSys Production Introduction")
+
+    # 동영상 파일 경로
+    video_path = "./movie/제품소개동영상0000-16526.mp4"
+
+    # 동영상 출력
+    st.video(video_path)
     # ###################################################################################
 	# word = 'intitle:대동공업 | intitle:대동기어 | intitle:엠트론 | intitle:tym | intitle:현대건설기계 | intitle:클라크머터리얼 | intitle:우진산전 | intitle:타타대우상용차 |\
     #         intitle:반도체수급 | intitle:호룡 | intitle:동서콘트롤 | intitle:현대상용차 | intitle:영안모자 | intitle:HSD엔진 | intitle:대동모빌리티'
